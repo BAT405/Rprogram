@@ -1,0 +1,206 @@
+---
+title: "file1"
+output:
+  html_document: default
+  pdf_document: default
+date: "2023-06-12"
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax
+for authoring HTML, PDF, and MS Word documents. For more details on
+using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that
+includes both content as well as the output of any embedded R code
+chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to
+prevent printing of the R code that generated the plot.
+
+
+Question 1
+str(covidtesting)
+
+
+Question 2
+variable_names <- names(dataset)
+> print(variable_names)> variable_names <- names(dataset)
+> print(variable_names)
+
+or 
+ls(covidtesting) 
+
+Question 3
+
+> top_15_rows <- head(dataset, n = 15)
+> print(top_15_rows)
+
+Qustion 4
+calculate_square <- function(variable) { 
++ squared \<- variable\^2 
++
+return(squared) 
++ } # Example usage of the function \> x_variable
+\<- dataset\$Total.Cases \> squared_variable \<-
+calculate_square(x_variable) \> print(squared_variable) \
+
+Question 5 
+# Load required libraries 
+library(dplyr)
+
+dataset \<- read.csv("covidtesting.csv")
+
+# Filter rows based on logical criteria
+
+filtered_data \<- dataset %\>% filter( Total.Cases\>0 &
+Total.Positive.LTC.Resident.Cases \>= 30)
+
+# View the filtered data
+
+print(filtered_data)
+
+
+Question 6 \
+# Load required libraries
+library(dplyr) 
+library(tidyr)
+
+dataset \<- read.csv("covidtesting.csv")
+
+# Identifying the dependent variable
+
+dependent_variable \<- dataset\$Resolved
+
+# Identifying the independent variables
+
+independent_variables \<- dataset[, c("Total.Cases", "Deaths")]
+
+# Reshaping the independent variables into long format
+
+reshaped_data \<- independent_variables %\>% pivot_longer(cols =
+everything(), names_to = "NEW", values_to = "NEW_1")
+
+# Creating a new data frame by joining the dependent and reshaped independent variables
+
+new_data_frame \<- data.frame(dependent_variable, reshaped_data)
+
+# View the new data frame
+
+print(new_data_frame)
+
+Question 12
+
+dataset \<- read.csv("covidtesting.csv")
+
+# Defining the proportion of observations for the training set (e.g., 0.8 for 80%)
+
+train_proportion \<- 0.8
+
+# Calculating the number of observations for the training set
+
+train_size \<- round(nrow(dataset) \* train_proportion)
+
+# Creating the training set using random sampling
+
+training_set \<- dataset[sample(nrow(dataset), train_size, replace =
+FALSE), ]
+
+# View the training set
+
+print(training_set)
+
+Question 13
+
+# Print the summary statistics of the dataset
+
+summary(dataset)
+
+Question 14
+
+dataset \<- read.csv("covidtesting.csv")
+
+# Extract the numerical variable of interest
+
+variable \<- dataset\$Total.Cases
+
+# Mean
+
+mean_value \<- mean(variable)
+
+# Median
+
+median_value \<- median(variable)
+
+# Mode
+
+mode_value \<- names(table(variable))[table(variable) ==
+max(table(variable))]
+
+# Range
+
+range_value \<- range(variable)
+
+# Print the results
+
+print(paste("Mean:", mean_value)) print(paste("Median:", median_value))
+print(paste("Mode:", mode_value)) print(paste("Range:", range_value))
+
+Question 15
+
+> # Specifying the variables for the scatter plot
+>
+> x_variable \<-
+> dataset$newly_reported_deaths y_variable <- dataset$Deaths_New_Methodology
+>
+> # Creating the scatter plot
+>
+> plot(x_variable, y_variable, + xlab = "newly_reported_deaths", ylab =
+> "Deaths_New_Methodology", + main = "Scatter Plot:
+> newly_reported_deaths vs.Deaths_New_Methodology")
+
+Question 16
+
+# Specifying the variables for the bar plot
+x_variable <- dataset$newly_reported_deaths
+y_variable <- as.numeric(dataset$Deaths_New_Methodology)
+
+# Create the bar plot
+barplot(y_variable, names.arg = x_variable,
+        xlab = "newly_reported_deaths", ylab = "Death_New_methodology",
+        main = "Bar Plot: newly_reported_deaths vs. Death_New_methodology")
+        
+        
+
+Question 17 
+> dataset \<- read.csv("covidtesting.csv") 
+# Specify the variables for correlation analysis \> x_variable \<-
+dataset$Deaths > y_variable <- dataset$deaths_data_cleaning \> \> \#
+Convert variables to numeric if needed \> x_variable \<-
+as.numeric(x_variable) \> y_variable \<- as.numeric(y_variable) \> \> \#
+Check if both variables are numeric \> if (is.numeric(x_variable) &&
+is.numeric(y_variable)) { + \# Calculate the correlation coefficient +
+correlation \<- cor(x_variable, y_variable) +\
++ \# Print the correlation coefficient + print(paste("Correlation
+coefficient:", correlation)) + } else { + print("Error: Both variables
+must be numeric") + }
